@@ -1,0 +1,19 @@
+# Local SQL credentials — DO NOT COMMIT
+dab-config.json
+
+# macOS
+.DS_Store
+
+# .NET
+bin/
+obj/
+*.user
+*.suo
+
+# VS Code local logs
+.vscode/*.log
+
+# Local environment/secrets
+.env
+.env.*
+!.env.example

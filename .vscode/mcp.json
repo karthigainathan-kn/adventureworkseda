@@ -1,0 +1,8 @@
+{
+  "servers": {
+    "retail-sales-sql": {
+      "type": "http",
+      "url": "http://localhost:5000"
+    }
+  }
+}

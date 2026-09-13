@@ -1,0 +1,89 @@
+{
+  "$schema": "https://github.com/Azure/data-api-builder/releases/latest/download/dab.draft.schema.json",
+  "data-source": {
+    "database-type": "mssql",
+    "connection-string": "Server=localhost,1433;Database=RetailSalesDB;User Id=sa;Password=YOUR_SQL_PASSWORD;TrustServerCertificate=True;"
+  },
+  "runtime": {
+    "rest": {
+      "enabled": true
+    },
+    "graphql": {
+      "enabled": false
+    },
+    "mcp": {
+      "enabled": true
+    },
+    "host": {
+      "mode": "development",
+      "cors": {
+        "origins": [
+          "*"
+        ],
+        "allow-credentials": false
+      }
+    }
+  },
+  "entities": {
+    "customers": {
+      "source": {
+        "type": "table",
+        "object": "dbo.customers"
+      },
+      "permissions": [
+        {
+          "role": "anonymous",
+          "actions": [
+            "read"
+          ]
+        }
+      ],
+      "description": "Retail customer master records."
+    },
+    "products": {
+      "source": {
+        "type": "table",
+        "object": "dbo.products"
+      },
+      "permissions": [
+        {
+          "role": "anonymous",
+          "actions": [
+            "read"
+          ]
+        }
+      ],
+      "description": "Retail product master records."
+    },
+    "orders": {
+      "source": {
+        "type": "table",
+        "object": "dbo.orders"
+      },
+      "permissions": [
+        {
+          "role": "anonymous",
+          "actions": [
+            "read"
+          ]
+        }
+      ],
+      "description": "Retail customer order headers."
+    },
+    "order_items": {
+      "source": {
+        "type": "table",
+        "object": "dbo.order_items"
+      },
+      "permissions": [
+        {
+          "role": "anonymous",
+          "actions": [
+            "read"
+          ]
+        }
+      ],
+      "description": "Retail order line items containing products and quantities."
+    }
+  }
+}
