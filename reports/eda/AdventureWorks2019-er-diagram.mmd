@@ -1,0 +1,378 @@
+erDiagram
+    dbo_AWBuildVersion {
+        tinyint SystemInformationID PK
+    }
+    dbo_DatabaseLog {
+        int DatabaseLogID PK
+    }
+    dbo_ErrorLog {
+        int ErrorLogID PK
+    }
+    HumanResources_Department {
+        smallint DepartmentID PK
+    }
+    HumanResources_Employee {
+        int BusinessEntityID PK
+    }
+    HumanResources_EmployeeDepartmentHistory {
+        int BusinessEntityID PK
+        smallint DepartmentID PK
+        tinyint ShiftID PK
+        date StartDate PK
+    }
+    HumanResources_EmployeePayHistory {
+        int BusinessEntityID PK
+        datetime RateChangeDate PK
+    }
+    HumanResources_JobCandidate {
+        int JobCandidateID PK
+        int BusinessEntityID FK
+    }
+    HumanResources_Shift {
+        tinyint ShiftID PK
+    }
+    Person_Address {
+        int AddressID PK
+        int StateProvinceID FK
+    }
+    Person_AddressType {
+        int AddressTypeID PK
+    }
+    Person_BusinessEntity {
+        int BusinessEntityID PK
+    }
+    Person_BusinessEntityAddress {
+        int BusinessEntityID PK
+        int AddressID PK
+        int AddressTypeID PK
+    }
+    Person_BusinessEntityContact {
+        int BusinessEntityID PK
+        int PersonID PK
+        int ContactTypeID PK
+    }
+    Person_ContactType {
+        int ContactTypeID PK
+    }
+    Person_CountryRegion {
+        nvarchar CountryRegionCode PK
+    }
+    Person_EmailAddress {
+        int BusinessEntityID PK
+        int EmailAddressID PK
+    }
+    Person_Password {
+        int BusinessEntityID PK
+    }
+    Person_Person {
+        int BusinessEntityID PK
+    }
+    Person_PersonPhone {
+        int BusinessEntityID PK
+        Phone PhoneNumber PK
+        int PhoneNumberTypeID PK
+    }
+    Person_PhoneNumberType {
+        int PhoneNumberTypeID PK
+    }
+    Person_StateProvince {
+        int StateProvinceID PK
+        nvarchar CountryRegionCode FK
+        int TerritoryID FK
+    }
+    Production_BillOfMaterials {
+        int BillOfMaterialsID PK
+        int ProductAssemblyID FK
+        int ComponentID FK
+        nchar UnitMeasureCode FK
+    }
+    Production_Culture {
+        nchar CultureID PK
+    }
+    Production_Document {
+        hierarchyid DocumentNode PK
+        int Owner FK
+    }
+    Production_Illustration {
+        int IllustrationID PK
+    }
+    Production_Location {
+        smallint LocationID PK
+    }
+    Production_Product {
+        int ProductID PK
+        nchar SizeUnitMeasureCode FK
+        nchar WeightUnitMeasureCode FK
+        int ProductSubcategoryID FK
+        int ProductModelID FK
+    }
+    Production_ProductCategory {
+        int ProductCategoryID PK
+    }
+    Production_ProductCostHistory {
+        int ProductID PK
+        datetime StartDate PK
+    }
+    Production_ProductDescription {
+        int ProductDescriptionID PK
+    }
+    Production_ProductDocument {
+        int ProductID PK
+        hierarchyid DocumentNode PK
+    }
+    Production_ProductInventory {
+        int ProductID PK
+        smallint LocationID PK
+    }
+    Production_ProductListPriceHistory {
+        int ProductID PK
+        datetime StartDate PK
+    }
+    Production_ProductModel {
+        int ProductModelID PK
+    }
+    Production_ProductModelIllustration {
+        int ProductModelID PK
+        int IllustrationID PK
+    }
+    Production_ProductModelProductDescriptionCulture {
+        int ProductModelID PK
+        int ProductDescriptionID PK
+        nchar CultureID PK
+    }
+    Production_ProductPhoto {
+        int ProductPhotoID PK
+    }
+    Production_ProductProductPhoto {
+        int ProductID PK
+        int ProductPhotoID PK
+    }
+    Production_ProductReview {
+        int ProductReviewID PK
+        int ProductID FK
+    }
+    Production_ProductSubcategory {
+        int ProductSubcategoryID PK
+        int ProductCategoryID FK
+    }
+    Production_ScrapReason {
+        smallint ScrapReasonID PK
+    }
+    Production_TransactionHistory {
+        int TransactionID PK
+        int ProductID FK
+    }
+    Production_TransactionHistoryArchive {
+        int TransactionID PK
+    }
+    Production_UnitMeasure {
+        nchar UnitMeasureCode PK
+    }
+    Production_WorkOrder {
+        int WorkOrderID PK
+        int ProductID FK
+        smallint ScrapReasonID FK
+    }
+    Production_WorkOrderRouting {
+        int WorkOrderID PK
+        int ProductID PK
+        smallint OperationSequence PK
+        smallint LocationID FK
+    }
+    Purchasing_ProductVendor {
+        int ProductID PK
+        int BusinessEntityID PK
+        nchar UnitMeasureCode FK
+    }
+    Purchasing_PurchaseOrderDetail {
+        int PurchaseOrderID PK
+        int PurchaseOrderDetailID PK
+        int ProductID FK
+    }
+    Purchasing_PurchaseOrderHeader {
+        int PurchaseOrderID PK
+        int EmployeeID FK
+        int VendorID FK
+        int ShipMethodID FK
+    }
+    Purchasing_ShipMethod {
+        int ShipMethodID PK
+    }
+    Purchasing_Vendor {
+        int BusinessEntityID PK
+    }
+    Sales_CountryRegionCurrency {
+        nvarchar CountryRegionCode PK
+        nchar CurrencyCode PK
+    }
+    Sales_CreditCard {
+        int CreditCardID PK
+    }
+    Sales_Currency {
+        nchar CurrencyCode PK
+    }
+    Sales_CurrencyRate {
+        int CurrencyRateID PK
+        nchar FromCurrencyCode FK
+        nchar ToCurrencyCode FK
+    }
+    Sales_Customer {
+        int CustomerID PK
+        int PersonID FK
+        int StoreID FK
+        int TerritoryID FK
+    }
+    Sales_PersonCreditCard {
+        int BusinessEntityID PK
+        int CreditCardID PK
+    }
+    Sales_SalesOrderDetail {
+        int SalesOrderID PK
+        int SalesOrderDetailID PK
+        int ProductID FK
+        int SpecialOfferID FK
+    }
+    Sales_SalesOrderHeader {
+        int SalesOrderID PK
+        int CustomerID FK
+        int SalesPersonID FK
+        int TerritoryID FK
+        int BillToAddressID FK
+        int ShipToAddressID FK
+        int ShipMethodID FK
+        int CreditCardID FK
+        int CurrencyRateID FK
+    }
+    Sales_SalesOrderHeaderSalesReason {
+        int SalesOrderID PK
+        int SalesReasonID PK
+    }
+    Sales_SalesPerson {
+        int BusinessEntityID PK
+        int TerritoryID FK
+    }
+    Sales_SalesPersonQuotaHistory {
+        int BusinessEntityID PK
+        datetime QuotaDate PK
+    }
+    Sales_SalesReason {
+        int SalesReasonID PK
+    }
+    Sales_SalesTaxRate {
+        int SalesTaxRateID PK
+        int StateProvinceID FK
+    }
+    Sales_SalesTerritory {
+        int TerritoryID PK
+        nvarchar CountryRegionCode FK
+    }
+    Sales_SalesTerritoryHistory {
+        int BusinessEntityID PK
+        int TerritoryID PK
+        datetime StartDate PK
+    }
+    Sales_ShoppingCartItem {
+        int ShoppingCartItemID PK
+        int ProductID FK
+    }
+    Sales_SpecialOffer {
+        int SpecialOfferID PK
+    }
+    Sales_SpecialOfferProduct {
+        int SpecialOfferID PK
+        int ProductID PK
+    }
+    Sales_Store {
+        int BusinessEntityID PK
+        int SalesPersonID FK
+    }
+    Person_Person ||--o{ HumanResources_Employee : "FK_Employee_Person_BusinessEntityID"
+    HumanResources_Department ||--o{ HumanResources_EmployeeDepartmentHistory : "FK_EmployeeDepartmentHistory_Department_DepartmentID"
+    HumanResources_Employee ||--o{ HumanResources_EmployeeDepartmentHistory : "FK_EmployeeDepartmentHistory_Employee_BusinessEntityID"
+    HumanResources_Shift ||--o{ HumanResources_EmployeeDepartmentHistory : "FK_EmployeeDepartmentHistory_Shift_ShiftID"
+    HumanResources_Employee ||--o{ HumanResources_EmployeePayHistory : "FK_EmployeePayHistory_Employee_BusinessEntityID"
+    HumanResources_Employee ||--o{ HumanResources_JobCandidate : "FK_JobCandidate_Employee_BusinessEntityID"
+    Person_StateProvince ||--o{ Person_Address : "FK_Address_StateProvince_StateProvinceID"
+    Person_Address ||--o{ Person_BusinessEntityAddress : "FK_BusinessEntityAddress_Address_AddressID"
+    Person_AddressType ||--o{ Person_BusinessEntityAddress : "FK_BusinessEntityAddress_AddressType_AddressTypeID"
+    Person_BusinessEntity ||--o{ Person_BusinessEntityAddress : "FK_BusinessEntityAddress_BusinessEntity_BusinessEntityID"
+    Person_BusinessEntity ||--o{ Person_BusinessEntityContact : "FK_BusinessEntityContact_BusinessEntity_BusinessEntityID"
+    Person_ContactType ||--o{ Person_BusinessEntityContact : "FK_BusinessEntityContact_ContactType_ContactTypeID"
+    Person_Person ||--o{ Person_BusinessEntityContact : "FK_BusinessEntityContact_Person_PersonID"
+    Person_Person ||--o{ Person_EmailAddress : "FK_EmailAddress_Person_BusinessEntityID"
+    Person_Person ||--o{ Person_Password : "FK_Password_Person_BusinessEntityID"
+    Person_BusinessEntity ||--o{ Person_Person : "FK_Person_BusinessEntity_BusinessEntityID"
+    Person_Person ||--o{ Person_PersonPhone : "FK_PersonPhone_Person_BusinessEntityID"
+    Person_PhoneNumberType ||--o{ Person_PersonPhone : "FK_PersonPhone_PhoneNumberType_PhoneNumberTypeID"
+    Person_CountryRegion ||--o{ Person_StateProvince : "FK_StateProvince_CountryRegion_CountryRegionCode"
+    Sales_SalesTerritory ||--o{ Person_StateProvince : "FK_StateProvince_SalesTerritory_TerritoryID"
+    Production_Product ||--o{ Production_BillOfMaterials : "FK_BillOfMaterials_Product_ComponentID"
+    Production_Product ||--o{ Production_BillOfMaterials : "FK_BillOfMaterials_Product_ProductAssemblyID"
+    Production_UnitMeasure ||--o{ Production_BillOfMaterials : "FK_BillOfMaterials_UnitMeasure_UnitMeasureCode"
+    HumanResources_Employee ||--o{ Production_Document : "FK_Document_Employee_Owner"
+    Production_ProductModel ||--o{ Production_Product : "FK_Product_ProductModel_ProductModelID"
+    Production_ProductSubcategory ||--o{ Production_Product : "FK_Product_ProductSubcategory_ProductSubcategoryID"
+    Production_UnitMeasure ||--o{ Production_Product : "FK_Product_UnitMeasure_SizeUnitMeasureCode"
+    Production_UnitMeasure ||--o{ Production_Product : "FK_Product_UnitMeasure_WeightUnitMeasureCode"
+    Production_Product ||--o{ Production_ProductCostHistory : "FK_ProductCostHistory_Product_ProductID"
+    Production_Document ||--o{ Production_ProductDocument : "FK_ProductDocument_Document_DocumentNode"
+    Production_Product ||--o{ Production_ProductDocument : "FK_ProductDocument_Product_ProductID"
+    Production_Location ||--o{ Production_ProductInventory : "FK_ProductInventory_Location_LocationID"
+    Production_Product ||--o{ Production_ProductInventory : "FK_ProductInventory_Product_ProductID"
+    Production_Product ||--o{ Production_ProductListPriceHistory : "FK_ProductListPriceHistory_Product_ProductID"
+    Production_Illustration ||--o{ Production_ProductModelIllustration : "FK_ProductModelIllustration_Illustration_IllustrationID"
+    Production_ProductModel ||--o{ Production_ProductModelIllustration : "FK_ProductModelIllustration_ProductModel_ProductModelID"
+    Production_Culture ||--o{ Production_ProductModelProductDescriptionCulture : "FK_ProductModelProductDescriptionCulture_Culture_CultureID"
+    Production_ProductDescription ||--o{ Production_ProductModelProductDescriptionCulture : "FK_ProductModelProductDescriptionCulture_ProductDescription_ProductDescriptionID"
+    Production_ProductModel ||--o{ Production_ProductModelProductDescriptionCulture : "FK_ProductModelProductDescriptionCulture_ProductModel_ProductModelID"
+    Production_Product ||--o{ Production_ProductProductPhoto : "FK_ProductProductPhoto_Product_ProductID"
+    Production_ProductPhoto ||--o{ Production_ProductProductPhoto : "FK_ProductProductPhoto_ProductPhoto_ProductPhotoID"
+    Production_Product ||--o{ Production_ProductReview : "FK_ProductReview_Product_ProductID"
+    Production_ProductCategory ||--o{ Production_ProductSubcategory : "FK_ProductSubcategory_ProductCategory_ProductCategoryID"
+    Production_Product ||--o{ Production_TransactionHistory : "FK_TransactionHistory_Product_ProductID"
+    Production_Product ||--o{ Production_WorkOrder : "FK_WorkOrder_Product_ProductID"
+    Production_ScrapReason ||--o{ Production_WorkOrder : "FK_WorkOrder_ScrapReason_ScrapReasonID"
+    Production_Location ||--o{ Production_WorkOrderRouting : "FK_WorkOrderRouting_Location_LocationID"
+    Production_WorkOrder ||--o{ Production_WorkOrderRouting : "FK_WorkOrderRouting_WorkOrder_WorkOrderID"
+    Production_Product ||--o{ Purchasing_ProductVendor : "FK_ProductVendor_Product_ProductID"
+    Production_UnitMeasure ||--o{ Purchasing_ProductVendor : "FK_ProductVendor_UnitMeasure_UnitMeasureCode"
+    Purchasing_Vendor ||--o{ Purchasing_ProductVendor : "FK_ProductVendor_Vendor_BusinessEntityID"
+    Production_Product ||--o{ Purchasing_PurchaseOrderDetail : "FK_PurchaseOrderDetail_Product_ProductID"
+    Purchasing_PurchaseOrderHeader ||--o{ Purchasing_PurchaseOrderDetail : "FK_PurchaseOrderDetail_PurchaseOrderHeader_PurchaseOrderID"
+    HumanResources_Employee ||--o{ Purchasing_PurchaseOrderHeader : "FK_PurchaseOrderHeader_Employee_EmployeeID"
+    Purchasing_ShipMethod ||--o{ Purchasing_PurchaseOrderHeader : "FK_PurchaseOrderHeader_ShipMethod_ShipMethodID"
+    Purchasing_Vendor ||--o{ Purchasing_PurchaseOrderHeader : "FK_PurchaseOrderHeader_Vendor_VendorID"
+    Person_BusinessEntity ||--o{ Purchasing_Vendor : "FK_Vendor_BusinessEntity_BusinessEntityID"
+    Person_CountryRegion ||--o{ Sales_CountryRegionCurrency : "FK_CountryRegionCurrency_CountryRegion_CountryRegionCode"
+    Sales_Currency ||--o{ Sales_CountryRegionCurrency : "FK_CountryRegionCurrency_Currency_CurrencyCode"
+    Sales_Currency ||--o{ Sales_CurrencyRate : "FK_CurrencyRate_Currency_FromCurrencyCode"
+    Sales_Currency ||--o{ Sales_CurrencyRate : "FK_CurrencyRate_Currency_ToCurrencyCode"
+    Person_Person ||--o{ Sales_Customer : "FK_Customer_Person_PersonID"
+    Sales_SalesTerritory ||--o{ Sales_Customer : "FK_Customer_SalesTerritory_TerritoryID"
+    Sales_Store ||--o{ Sales_Customer : "FK_Customer_Store_StoreID"
+    Sales_CreditCard ||--o{ Sales_PersonCreditCard : "FK_PersonCreditCard_CreditCard_CreditCardID"
+    Person_Person ||--o{ Sales_PersonCreditCard : "FK_PersonCreditCard_Person_BusinessEntityID"
+    Sales_SalesOrderHeader ||--o{ Sales_SalesOrderDetail : "FK_SalesOrderDetail_SalesOrderHeader_SalesOrderID"
+    Sales_SpecialOfferProduct ||--o{ Sales_SalesOrderDetail : "FK_SalesOrderDetail_SpecialOfferProduct_SpecialOfferIDProductID"
+    Person_Address ||--o{ Sales_SalesOrderHeader : "FK_SalesOrderHeader_Address_BillToAddressID"
+    Person_Address ||--o{ Sales_SalesOrderHeader : "FK_SalesOrderHeader_Address_ShipToAddressID"
+    Sales_CreditCard ||--o{ Sales_SalesOrderHeader : "FK_SalesOrderHeader_CreditCard_CreditCardID"
+    Sales_CurrencyRate ||--o{ Sales_SalesOrderHeader : "FK_SalesOrderHeader_CurrencyRate_CurrencyRateID"
+    Sales_Customer ||--o{ Sales_SalesOrderHeader : "FK_SalesOrderHeader_Customer_CustomerID"
+    Sales_SalesPerson ||--o{ Sales_SalesOrderHeader : "FK_SalesOrderHeader_SalesPerson_SalesPersonID"
+    Sales_SalesTerritory ||--o{ Sales_SalesOrderHeader : "FK_SalesOrderHeader_SalesTerritory_TerritoryID"
+    Purchasing_ShipMethod ||--o{ Sales_SalesOrderHeader : "FK_SalesOrderHeader_ShipMethod_ShipMethodID"
+    Sales_SalesOrderHeader ||--o{ Sales_SalesOrderHeaderSalesReason : "FK_SalesOrderHeaderSalesReason_SalesOrderHeader_SalesOrderID"
+    Sales_SalesReason ||--o{ Sales_SalesOrderHeaderSalesReason : "FK_SalesOrderHeaderSalesReason_SalesReason_SalesReasonID"
+    HumanResources_Employee ||--o{ Sales_SalesPerson : "FK_SalesPerson_Employee_BusinessEntityID"
+    Sales_SalesTerritory ||--o{ Sales_SalesPerson : "FK_SalesPerson_SalesTerritory_TerritoryID"
+    Sales_SalesPerson ||--o{ Sales_SalesPersonQuotaHistory : "FK_SalesPersonQuotaHistory_SalesPerson_BusinessEntityID"
+    Person_StateProvince ||--o{ Sales_SalesTaxRate : "FK_SalesTaxRate_StateProvince_StateProvinceID"
+    Person_CountryRegion ||--o{ Sales_SalesTerritory : "FK_SalesTerritory_CountryRegion_CountryRegionCode"
+    Sales_SalesPerson ||--o{ Sales_SalesTerritoryHistory : "FK_SalesTerritoryHistory_SalesPerson_BusinessEntityID"
+    Sales_SalesTerritory ||--o{ Sales_SalesTerritoryHistory : "FK_SalesTerritoryHistory_SalesTerritory_TerritoryID"
+    Production_Product ||--o{ Sales_ShoppingCartItem : "FK_ShoppingCartItem_Product_ProductID"
+    Production_Product ||--o{ Sales_SpecialOfferProduct : "FK_SpecialOfferProduct_Product_ProductID"
+    Sales_SpecialOffer ||--o{ Sales_SpecialOfferProduct : "FK_SpecialOfferProduct_SpecialOffer_SpecialOfferID"
+    Person_BusinessEntity ||--o{ Sales_Store : "FK_Store_BusinessEntity_BusinessEntityID"
+    Sales_SalesPerson ||--o{ Sales_Store : "FK_Store_SalesPerson_SalesPersonID"

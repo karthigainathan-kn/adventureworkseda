@@ -2,7 +2,7 @@
   "$schema": "https://github.com/Azure/data-api-builder/releases/latest/download/dab.draft.schema.json",
   "data-source": {
     "database-type": "mssql",
-    "connection-string": "Server=localhost,1433;Database=RetailSalesDB;User Id=sa;Password=YOUR_SQL_PASSWORD;TrustServerCertificate=True;"
+    "connection-string": "Server=localhost,1433;Database=AdventureWorks2019;User Id=mcp_readonly;Password=REPLACE_WITH_LOCAL_PASSWORD;TrustServerCertificate=True;"
   },
   "runtime": {
     "rest": {
@@ -12,78 +12,99 @@
       "enabled": false
     },
     "mcp": {
-      "enabled": true
+      "enabled": true,
+      "dml-tools": {
+        "describe-entities": true,
+        "create-record": false,
+        "read-records": true,
+        "update-record": false,
+        "delete-record": false,
+        "execute-entity": false,
+        "aggregate-records": true
+      }
     },
     "host": {
       "mode": "development",
       "cors": {
-        "origins": [
-          "*"
-        ],
+        "origins": [],
         "allow-credentials": false
       }
     }
   },
+  "autoentities": {
+    "adventureworks": {
+      "patterns": {
+        "include": [
+          "%.%"
+        ],
+        "exclude": [
+          "Production.BillOfMaterials"
+        ]
+      },
+      "template": {
+        "graphql": {
+          "enabled": false
+        },
+        "mcp": true
+      },
+      "permissions": [
+        {
+          "role": "anonymous",
+          "actions": [
+            {
+              "action": "read"
+            }
+          ]
+        }
+      ]
+    }
+  },
   "entities": {
-    "customers": {
+    "Production_BillOfMaterials": {
       "source": {
         "type": "table",
-        "object": "dbo.customers"
+        "object": "Production.BillOfMaterials"
       },
+      "fields": [
+        {
+          "name": "BillOfMaterialsID",
+          "primary-key": true
+        },
+        {
+          "name": "ProductAssemblyID"
+        },
+        {
+          "name": "ComponentID"
+        },
+        {
+          "name": "StartDate"
+        },
+        {
+          "name": "EndDate"
+        },
+        {
+          "name": "UnitMeasureCode"
+        },
+        {
+          "name": "BOMLevel"
+        },
+        {
+          "name": "PerAssemblyQty"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ],
       "permissions": [
         {
           "role": "anonymous",
           "actions": [
-            "read"
+            {
+              "action": "read"
+            }
           ]
         }
-      ],
-      "description": "Retail customer master records."
-    },
-    "products": {
-      "source": {
-        "type": "table",
-        "object": "dbo.products"
-      },
-      "permissions": [
-        {
-          "role": "anonymous",
-          "actions": [
-            "read"
-          ]
-        }
-      ],
-      "description": "Retail product master records."
-    },
-    "orders": {
-      "source": {
-        "type": "table",
-        "object": "dbo.orders"
-      },
-      "permissions": [
-        {
-          "role": "anonymous",
-          "actions": [
-            "read"
-          ]
-        }
-      ],
-      "description": "Retail customer order headers."
-    },
-    "order_items": {
-      "source": {
-        "type": "table",
-        "object": "dbo.order_items"
-      },
-      "permissions": [
-        {
-          "role": "anonymous",
-          "actions": [
-            "read"
-          ]
-        }
-      ],
-      "description": "Retail order line items containing products and quantities."
+      ]
     }
   }
 }

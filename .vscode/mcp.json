@@ -1,8 +1,8 @@
 {
   "servers": {
-    "retail-sales-sql": {
+    "adventureworks-dab": {
       "type": "http",
-      "url": "http://localhost:5000"
+      "url": "http://localhost:5000/mcp"
     }
   }
 }
